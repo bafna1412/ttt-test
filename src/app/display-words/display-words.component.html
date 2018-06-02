@@ -1,0 +1,12 @@
+<div *ngIf="words?.length > 0">
+  <ul>
+    <li class="display-header">S.No.</li>
+    <li class="display-header">Word</li>
+    <li class="display-header">Frequency</li>
+    <div *ngFor="let word of words; let counter = index">
+      <li> {{ counter+1 }}</li>
+      <li>{{ word.word }}</li>
+      <li> {{ word.frequency }}</li>
+    </div>
+  </ul>
+</div>

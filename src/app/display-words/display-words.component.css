@@ -1,0 +1,28 @@
+/* CSS file for display-words */
+
+div {
+    text-align: center;
+}
+
+.display-header {
+    font-weight: bold;
+}
+
+ul {
+    color: #FFF;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    height: 600px;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+li {
+    line-height: 1.6em;
+    border-bottom: 0.25px solid #FFF;
+    float: left;
+    display: inline;
+    width: 33.3%;
+    font-size: 1.2em;
+}
