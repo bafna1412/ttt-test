@@ -1,0 +1,8 @@
+<div>
+  <label>
+    Please enter the number of top most frequently used words you want on display
+    <input #userInput  placeholder="Enter a number">
+    <button (click)="getWords(userInput.value)">Submit</button>
+  </label>
+  <div class="message-log">{{ wordsService.message }}</div>
+</div>
