@@ -20,7 +20,40 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Frequency Computation
+// Frequency Computation. Please read README
+
+// Simple Frequency Computation (only absolute matches)
+function simpleFrequencyComputation(words) {
+  const frequencyArray = [];
+  const checkedWords = [];
+  words.forEach(target => {
+    let counter = 0;
+    // Remove empty strings created due to split and check if the word has been counted before
+    if (!(/^[]*$/.test(target)) && !checkedWords.includes(target.toLowerCase())) {
+      words.forEach(word => {
+        if (word.toLowerCase() === target.toLowerCase())
+          counter++;
+      });
+      // Make entry to frequency array
+      frequencyArray.push({word: target.toLowerCase(), frequency: counter});
+      // Push the word in checked words list
+      checkedWords.push(target.toLowerCase());
+    }
+  });
+  
+  // Sort array in descending order by frequency
+  frequencyArray.sort((a, b) => {
+    if (a.frequency === b.frequency) {
+      return b.word < a.word;
+    } else {
+      return b.frequency - a.frequency;
+    }
+  });
+
+  return frequencyArray;
+}
+
+// Complex Frequency Computation (absolute match for 1 letter words and include for others)
 function frequencyComputation(words) {
   const frequencyArray = [];
   const checkedWords = [];
@@ -60,13 +93,30 @@ function frequencyComputation(words) {
   return frequencyArray;
 }
 
-// Split text file into words
+// Split text file into words. Please read README
 function textToWords(text) {
 
   // Convert text to words (removes numbers, spaces, tabs, nextLineCharacter and special characters mentioned  in regex)
-  const words = text.split(/[.,@:_;?\/\(\)\t\n"<>0-9– ]/);
+  let words = text.split(/[.,@:_;?\/\(\)\t\n"<>0-9– ]/);
   
+  /* Split words containing hyphen(-) at positions other than [1].
+   This keeps words like `t-shirt`, `e-commerce` untouched.
+   But splits words like `cover-letter`, `terribly-tiny-test` */
+
+  words.forEach(word => {
+    if (word.includes('-') && word[1] != '-') {
+      let splitWord = word.split('-');
+      // Remove splited word from words array
+      words.splice(words.indexOf(word), 1);
+      // Add split array to words array
+      words = words.concat(splitWord);
+    } 
+  });
+
   return frequencyComputation(words);
+
+  // Uncomment next command and comment the last one to get absolute matches for the words
+  //return simpleFrequencyComputation(words);
 }
 
 // Fetch text file
