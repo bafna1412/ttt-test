@@ -11,7 +11,7 @@ const app = express();
 
 // Enable CORS
 const cors = require('cors');
-
+// Set corsOptions
 let corsOptions = {
   origin: 'http://localhost:4200',
   optionSuccessStatus: 200
@@ -20,9 +20,24 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Frequency Computation. Please read README
+
+// Sort word-frequency array
+function sortArray(frequencyArray) {
+  // Sort array in descending order by frequency
+  frequencyArray.sort((a, b) => {
+    if (a.frequency === b.frequency) {
+      return b.word < a.word;
+    } else {
+      return b.frequency - a.frequency;
+    }
+  });
+  return frequencyArray;
+}
+
 
 // Simple Frequency Computation (only absolute matches)
+// This function can be used in place of frequencyComputation present in server.js
+// In textToWords function use this function in place of frequencyComputation
 function simpleFrequencyComputation(words) {
   const frequencyArray = [];
   const checkedWords = [];
@@ -41,18 +56,12 @@ function simpleFrequencyComputation(words) {
     }
   });
   
-  // Sort array in descending order by frequency
-  frequencyArray.sort((a, b) => {
-    if (a.frequency === b.frequency) {
-      return b.word < a.word;
-    } else {
-      return b.frequency - a.frequency;
-    }
-  });
-
-  return frequencyArray;
+  // Sort array and return the result
+  return sortArray(frequencyArray);
 }
 
+
+// Frequency Computation. Please read README
 // Complex Frequency Computation (absolute match for 1 letter words and include for others)
 function frequencyComputation(words) {
   const frequencyArray = [];
@@ -81,28 +90,19 @@ function frequencyComputation(words) {
     }
   });
   
-  // Sort array in descending order by frequency
-  frequencyArray.sort((a, b) => {
-    if (a.frequency === b.frequency) {
-      return b.word < a.word;
-    } else {
-      return b.frequency - a.frequency;
-    }
-  });
-
-  return frequencyArray;
+  // Sort array and return the reuslt
+  return sortArray(frequencyArray);
 }
 
-// Split text file into words. Please read README
-function textToWords(text) {
 
-  // Convert text to words (removes numbers, spaces, tabs, nextLineCharacter and special characters mentioned  in regex)
-  let words = text.split(/[.,@:_;?\/\(\)\t\n"<>0-9– ]/);
-  
-  /* Split words containing hyphen(-) at positions other than [1].
+/* Split words containing hyphen(-) at positions other than [1].
    This keeps words like `t-shirt`, `e-commerce` untouched.
    But splits words like `cover-letter`, `terribly-tiny-test` */
 
+// This function can be used as an additional split in textToWords function
+// Before passing words array to any of the frequency computation functions call this.
+// Usage: words = hyphenSplit(words);
+function hyphenSplit(words) {
   words.forEach(word => {
     if (word.includes('-') && word[1] != '-') {
       let splitWord = word.split('-');
@@ -113,11 +113,24 @@ function textToWords(text) {
     } 
   });
 
+  return words; 
+}
+
+
+// Split text file into words. Please read README
+function textToWords(text) {
+
+  // Convert text to words (removes numbers, spaces, tabs, nextLineCharacter and special characters mentioned  in regex)
+  let words = text.split(/[.,@:_;?\/\(\)\t\n"<>0-9– ]/);
+  // Split words containing hyphen
+  words = hyphenSplit(words);
+
   return frequencyComputation(words);
 
   // Uncomment next command and comment the last one to get absolute matches for the words
   //return simpleFrequencyComputation(words);
 }
+
 
 // Fetch text file
 function readTextFile(link) {
@@ -126,6 +139,7 @@ function readTextFile(link) {
     .then(body =>  textToWords(body))
     .catch(error => console.error(error));
 }
+
 
 // Receive request, process data and send words as per userInput
 app.get('/api/words/:userInput', (request, response) => {
