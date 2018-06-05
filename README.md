@@ -63,7 +63,7 @@ This is again on developer's discretion which type of Frequency Computation, he 
 The following are the screenshots of the results displayed on frontend:
 
 
-![simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png "simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency")  
+![Alt simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png)  
 
 ![frequencyComputation with hyphenSplit. Word "in" has the highest frequency](screenshots/frequencyComputation_w_hyphenSplit.png)  
 
