@@ -6,11 +6,11 @@ This document will serve as a guide to get better understanding of different com
 
 ## Aim
 
-1. The aim of the project was to create a fronted that accepts a number input N.
-2. On click of submit button, a request is to be sent to the backend. The request will contain the user input N.
-3. At backend, fetch a file hosted at (http://terriblytinytales.com/test.txt)
-4. The backed will process this file and return the top N most frequently used words in the file.
-5. Finally, the backend will display these words in a serialized tabular format.
+1. The aim of the project was to create a fronted that accepts a number input N
+2. On click of submit button, a request is to be sent to the backend. The request will contain the user input N
+3. At backend, fetch a file hosted at http://terriblytinytales.com/test.txt
+4. The backed will process this file and return the top N most frequently used words in the file
+5. Finally, the backend will display these words in a serialized tabular format
 
 The project can be divided into two parts: `Backend` and `Frontend`. Both of these will be explained in detail.
 
@@ -54,9 +54,9 @@ After the text is `split` and the result saved to `words` array, the array is se
 
 Both these functions, `simpleFrequencyComputation` and `FrequencyComputation` have some common traits:
 
-0. Both check for empty elements  `""` that are present in the `words` array due to `split`, and both check if a word's frequency has been computed already.
+1. Both check for empty elements  `""` that are present in the `words` array due to `split`, and both check if a word's frequency has been computed already.
 
-0. Both send the final `frequencyArray` for sorting in `descending` order on the basis of `frequency`.
+2. Both send the final `frequencyArray` for sorting in `descending` order on the basis of `frequency`.
 
 This is again on developer's discretion which type of Frequency Computation, he or she wants.
 
@@ -64,7 +64,7 @@ The following are the screenshots of the results displayed on frontend:
 
 #### simpleFrequencyComputation with hyphenSplit. Word `i` has the highest frequency:
 
-> ![simpleFrequencyComputation with hyphenSplit](screenshots/simpleFrequencyComputation_w_hyphenSplit.png =100x150)  
+> ![simpleFrequencyComputation with hyphenSplit](screenshots/simpleFrequencyComputation_w_hyphenSplit.png =100*150)  
 
 #### frequencyComputation with hyphenSplit. Word `in` has the highest frequency:
 
@@ -129,8 +129,8 @@ If everything goes right, the number of most frequently used words the user aske
 
 ## Final notes for the TTT
 
-0. I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
+1. I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
 
-0. After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission.
+2. After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission.
 
-0. Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not.
+3. Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not.
