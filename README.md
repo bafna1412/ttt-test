@@ -30,11 +30,15 @@ The `readTextFile` function will utilize `node-fetch` to fetch the text file hos
 
 `textToWords` is basically the first step in our process of frequency computation of words. The input to this function is a text which contains different types of spacing characters (single space, tab`\t`, next line character`\n`), various symbols (`@`, `:`, `_`, `?` etc.) and punctuations(`.`, `,` , `"` etc.) and also numbers that we don't need.  The idea is to remove all these from the text and store just the words in an array which can be used for frequency computation of words. `split` helps us with this.
 
-Note: At first, I tried by splitting the text at some of these characters, but to do that for each and every character didn't seem like an efficient process. So, to find a better way I googled, and discovered with the help of `stackoverflow` that `split` command can work upon a regex. This made the process of splitting text over different characters an easy task.
+### Note: 
+
+At first, I tried by splitting the text at some of these characters, but to do that for each and every character didn't seem like an efficient process. So, to find a better way I googled, and discovered with the help of `stackoverflow` that `split` command can work upon a regex. This made the process of splitting text over different characters an easy task.
 
 The `text` is `split` on  this regex `/[.,@:_;?\/\(\)\t\n"<>0-9– ]/` and the result is saved in `words` array.
 
-Note: Initially, I included hyphen(`-`) in the regex, but that caused an issue. If we include `-` in the regex then the words like, `t-shirts` and `e-commerce` will split into `t` `shirts` and `e` `commerce` respectively. Now, the words array will have `shirts` and `commerce`  elements which qualify as words but also `t` and `e` which do not qualify as words in my opinion. Also, my opinion was that words like, `t-shirts` and `e-commerce` are words in their own right, so there is no need to split these. For this reason, I excluded `-` from the `regex`. But this caused another problem, in the text there are words like, `terribly-tiny-tales` and `terribly-tiny-test` that are combination of multiple words, and in my opinion should be split.
+### Note:
+
+Initially, I included hyphen(`-`) in the regex, but that caused an issue. If we include `-` in the regex then the words like, `t-shirts` and `e-commerce` will split into `t` `shirts` and `e` `commerce` respectively. Now, the words array will have `shirts` and `commerce`  elements which qualify as words but also `t` and `e` which do not qualify as words in my opinion. Also, my opinion was that words like, `t-shirts` and `e-commerce` are words in their own right, so there is no need to split these. For this reason, I excluded `-` from the `regex`. But this caused another problem, in the text there are words like, `terribly-tiny-tales` and `terribly-tiny-test` that are combination of multiple words, and in my opinion should be split.
 
 To tackle the  above issue, I wrote a separate function `hyphenSplit`. This function will check if the words in the array contain `-`, and  if the `-` is in the first position (`t-shirts`, `e-commerce`); if the `-` is not at the first position then the `word` will be `split` over `-` otherwise not. The `pros` of this is that now we can save words like `t-shirts` and split words like, `terribly-tiny-test`. The `cons` is that if the text  contains a word like `co-passenger`, it'll be split in `co` and `passenger`.
 
@@ -50,17 +54,21 @@ After the text is `split` and the result saved to `words` array, the array is se
 
 Both these functions, `simpleFrequencyComputation` and `FrequencyComputation` have some common traits:
 
-1. Both check for empty elements  `""` that are present in the `words` array due to `split`, and both check if a word's frequency has been computed already then it is not done again.
+0. Both check for empty elements  `""` that are present in the `words` array due to `split`, and both check if a word's frequency has been computed already.
 
-2. Both send the final `frequencyArray` for sorting in `descending` order on the basis of `frequency`.
+0. Both send the final `frequencyArray` for sorting in `descending` order on the basis of `frequency`.
 
 This is again on developer's discretion which type of Frequency Computation, he or she wants.
 
 The following are the screenshots of the results displayed on frontend:
 
-![`simpleFrequencyComputation` with hyphenSplit. `i` has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png)  
-![`frequencyComputation` with hyphenSplit. `in` has the highest frequency](screenshots/frequencyComputation_w_hyphenSplit.png)  
+
+![simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png)  
+
+![frequencyComputation with hyphenSplit. Word "in" has the highest frequency](screenshots/frequencyComputation_w_hyphenSplit.png)  
+
 ![`simpleFrequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is present as a single word](screenshots/simpleFrequencyComputation_w-o_hyphenSplit.png)  
+
 ![`frequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is not present as a single word](screenshots/frequencyComputation_w-o_hyphenSplit.png)  
 
 Note: CORS has been implemented in `server.js` to avoid `Cross Origin Resource Sharing` issue.
@@ -84,6 +92,7 @@ There are two components (`ask-user` and `display-words`) and one service (`word
 The whole page is `app` component; `ask-user` and `display-words` are called inside this component.
 
 The screenshot below shows both the components in display.
+
 ![Components](screenshots/components.png)
 
 When the user enters an input and presses submit `getWords` present in `ask-user.component` is called. The function first checks if the `input` is a `number greater than 0` or not. If not then functions present in `words.service`, which acts as a connection between `ask-user` and `display-words` are called upon to log an error on screen.
@@ -104,8 +113,8 @@ If everything goes right, the number of most frequently used words the user aske
 
 ## Final notes for the TTT
 
-1. I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
+0. I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
 
-2. After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission.
+0. After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission.
 
-3. Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not.
+0. Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not.
