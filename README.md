@@ -66,11 +66,11 @@ The project can be divided into two parts: `Backend` and `Frontend`. Both of the
 
 - The following are the screenshots of the results displayed on frontend:
 
-#### simpleFrequencyComputation with hyphenSplit. Word `i` has the highest frequency:
+#### `simpleFrequencyComputation` with hyphenSplit. Word `i` has the highest frequency:
 
 > ![simpleFrequencyComputation with hyphenSplit](screenshots/simpleFrequencyComputation_w_hyphenSplit.png)  
 
-#### frequencyComputation with hyphenSplit. Word `in` has the highest frequency:
+#### `frequencyComputation` with `hyphenSplit`. Word `in` has the highest frequency:
 
 > ![frequencyComputation with hyphenSplit](screenshots/frequencyComputation_w_hyphenSplit.png)  
 
@@ -83,7 +83,7 @@ The project can be divided into two parts: `Backend` and `Frontend`. Both of the
 > ![`frequencyComputation` without `hyphenSplit`](screenshots/frequencyComputation_w-o_hyphenSplit.png)  
 
 ### Note:
-CORS has been implemented in `server.js` to avoid `Cross Origin Resource Sharing` issue.
+CORS has been implemented in `server.js` to enable `Cross Origin Resource Sharing`.
 
 ## Frontend
 
@@ -131,7 +131,7 @@ CORS has been implemented in `server.js` to avoid `Cross Origin Resource Sharing
 
 > ![Display of top 6 frequently used words with `simpleFrequencyComputation`](screenshots/display_simpleFrequencyComputation.png)  
 
-## Final notes for the TTT
+## Final notes for TTT
 
 - I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
 
