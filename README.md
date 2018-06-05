@@ -32,13 +32,13 @@ The `readTextFile` function will utilize `node-fetch` to fetch the text file hos
 
 ### Note: 
 
-At first, I tried by splitting the text at some of these characters, but to do that for each and every character didn't seem like an efficient process. So, to find a better way I googled, and discovered with the help of `stackoverflow` that `split` command can work upon a regex. This made the process of splitting text over different characters an easy task.
+> At first, I tried by splitting the text at some of these characters, but to do that for each and every character didn't seem like an efficient process. So, to find a better way I googled, and discovered with the help of `stackoverflow` that `split` command can work upon a regex. This made the process of splitting text over different characters an easy task.
 
 The `text` is `split` on  this regex `/[.,@:_;?\/\(\)\t\n"<>0-9– ]/` and the result is saved in `words` array.
 
 ### Note:
 
-Initially, I included hyphen(`-`) in the regex, but that caused an issue. If we include `-` in the regex then the words like, `t-shirts` and `e-commerce` will split into `t` `shirts` and `e` `commerce` respectively. Now, the words array will have `shirts` and `commerce`  elements which qualify as words but also `t` and `e` which do not qualify as words in my opinion. Also, my opinion was that words like, `t-shirts` and `e-commerce` are words in their own right, so there is no need to split these. For this reason, I excluded `-` from the `regex`. But this caused another problem, in the text there are words like, `terribly-tiny-tales` and `terribly-tiny-test` that are combination of multiple words, and in my opinion should be split.
+> Initially, I included hyphen(`-`) in the regex, but that caused an issue. If we include `-` in the regex then the words like, `t-shirts` and `e-commerce` will split into `t` `shirts` and `e` `commerce` respectively. Now, the words array will have `shirts` and `commerce`  elements which qualify as words but also `t` and `e` which do not qualify as words in my opinion. Also, my opinion was that words like, `t-shirts` and `e-commerce` are words in their own right, so there is no need to split these. For this reason, I excluded `-` from the `regex`. But this caused another problem, in the text there are words like, `terribly-tiny-tales` and `terribly-tiny-test` that are combination of multiple words, and in my opinion should be split.
 
 To tackle the  above issue, I wrote a separate function `hyphenSplit`. This function will check if the words in the array contain `-`, and  if the `-` is in the first position (`t-shirts`, `e-commerce`); if the `-` is not at the first position then the `word` will be `split` over `-` otherwise not. The `pros` of this is that now we can save words like `t-shirts` and split words like, `terribly-tiny-test`. The `cons` is that if the text  contains a word like `co-passenger`, it'll be split in `co` and `passenger`.
 
@@ -63,7 +63,7 @@ This is again on developer's discretion which type of Frequency Computation, he 
 The following are the screenshots of the results displayed on frontend:
 
 
-![simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png)  
+![simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png "simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency")  
 
 ![frequencyComputation with hyphenSplit. Word "in" has the highest frequency](screenshots/frequencyComputation_w_hyphenSplit.png)  
 
