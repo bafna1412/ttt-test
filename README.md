@@ -135,8 +135,8 @@ CORS has been implemented in `server.js` to enable `Cross Origin Resource Sharin
 
 - I've not updated the `favicon` because I couldn't decide, and went ahead with the default angular favicon
 
-- I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience.
+- I thought of adding a `check` for `internet-connectivity` to make sure app can fetch the text file hosted at remote server. But, decided against it at this moment. But, that can be done to enhance the user experience
 
-- After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission.
+- After submission, I'll be working to host this on `heroku`. I am not doing this now because I am not sure if you are still hiring and I don't want to delay the submission
 
-- Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not.
+- Whenever you see this, please let me know how close is this to your required solution; irrespective of whether I am hired or not
