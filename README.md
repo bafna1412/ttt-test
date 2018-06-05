@@ -62,16 +62,24 @@ This is again on developer's discretion which type of Frequency Computation, he 
 
 The following are the screenshots of the results displayed on frontend:
 
+#### simpleFrequencyComputation with hyphenSplit. Word `i` has the highest frequency:
 
-![Alt simpleFrequencyComputation with hyphenSplit. Word "i" has the highest frequency](screenshots/simpleFrequencyComputation_w_hyphenSplit.png?raw=true "simpleFrequencyComputation with hyphenSplit. Word i has the highest frequency")  
+> ![simpleFrequencyComputation with hyphenSplit](screenshots/simpleFrequencyComputation_w_hyphenSplit.png =100x150)  
 
-![frequencyComputation with hyphenSplit. Word "in" has the highest frequency](screenshots/frequencyComputation_w_hyphenSplit.png)  
+#### frequencyComputation with hyphenSplit. Word `in` has the highest frequency:
 
-![`simpleFrequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is present as a single word](screenshots/simpleFrequencyComputation_w-o_hyphenSplit.png)  
+> ![frequencyComputation with hyphenSplit](screenshots/frequencyComputation_w_hyphenSplit.png)  
 
-![`frequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is not present as a single word](screenshots/frequencyComputation_w-o_hyphenSplit.png)  
+#### `simpleFrequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is present as a single word:
 
-Note: CORS has been implemented in `server.js` to avoid `Cross Origin Resource Sharing` issue.
+> ![`simpleFrequencyComputation` without `hyphenSplit`](screenshots/simpleFrequencyComputation_w-o_hyphenSplit.png)  
+
+#### `frequencyComputation` without `hyphenSplit`. `terribly-tiny-test` is not present as a single word:
+
+> ![`frequencyComputation` without `hyphenSplit`](screenshots/frequencyComputation_w-o_hyphenSplit.png)  
+
+### Note:
+CORS has been implemented in `server.js` to avoid `Cross Origin Resource Sharing` issue.
 
 ## Frontend
 
@@ -91,25 +99,33 @@ There are two components (`ask-user` and `display-words`) and one service (`word
 
 The whole page is `app` component; `ask-user` and `display-words` are called inside this component.
 
-The screenshot below shows both the components in display.
+#### The screenshot below shows both the components in display:
 
-![Components](screenshots/components.png)
+> ![Components](screenshots/components.png)
 
 When the user enters an input and presses submit `getWords` present in `ask-user.component` is called. The function first checks if the `input` is a `number greater than 0` or not. If not then functions present in `words.service`, which acts as a connection between `ask-user` and `display-words` are called upon to log an error on screen.
 
-![An example of Error Logging](screenshots/error_log.png)
+#### Error logging in case `input` is not a number or is zero:
+
+> ![An example of Error Logging](screenshots/error_log.png)
 
 If the `input > 0` then, `callDisplayWords` present in  `words.service` is called upon, which in turn calls `getWords` function present in `display-words` component. This function again uses the `words.service` to make a `get` request to server with the `userInput`.
 
 If the request catches any error then again a error message is logged on screen.
 
-![If something goes wrong while making `get` request](screenshots/error_log1.png)
+#### Error logging in case of `get` request failure:
+
+> ![If something goes wrong while making `get` request](screenshots/error_log1.png)
 
 If everything goes right, the number of most frequently used words the user asked for are displayed on screen.
 
-![Display of top 6 frequently used words with `frequencyComputation`](screenshots/display_frequencyComputation.png)  
+#### Display of top 6 frequently used words with `frequencyComputation`:
 
-![Display of top 6 frequently used words with `simpleFrequencyComputation`](screenshots/display_simpleFrequencyComputation.png)  
+> ![Display of top 6 frequently used words with `frequencyComputation`](screenshots/display_frequencyComputation.png)  
+
+#### Display of top 6 frequently used words with `simpleFrequencyComputation`:
+
+> ![Display of top 6 frequently used words with `simpleFrequencyComputation`](screenshots/display_simpleFrequencyComputation.png)  
 
 ## Final notes for the TTT
 
