@@ -1,5 +1,10 @@
 # FrequencyComputation
 
+### Note:
+- Project has been deployed on Heroku. Please have a [look](https://ttt-bafna1412.herokuapp.com/)
+- `heroku` branch has been used for deployment
+- No `CORS` and hardcoded urls in `heroku` branch
+
 The project serves as a test for Job Application for the position of Software Developer at Terribly Tiny Tales.
 
 This document will serve as a guide to get better understanding of different components of the project. The document contains explanations of components of code, as well as some personal notes from my side. The notes are a version of my thought process at the time of coding a particular component and the reason behind it.
@@ -83,7 +88,8 @@ The project can be divided into two parts: `Backend` and `Frontend`. Both of the
 > ![`frequencyComputation` without `hyphenSplit`](screenshots/frequencyComputation_w-o_hyphenSplit.png)  
 
 ### Note:
-CORS has been implemented in `server.js` to enable `Cross Origin Resource Sharing`.
+- `master` branch: CORS has been implemented in `server.js` to enable `Cross Origin Resource Sharing`.
+- `heroku` branch: No need for CORS
 
 ## Frontend
 
