@@ -3,7 +3,7 @@
 // Require express
 const express = require('express');
 
-//Require path
+//Require path and http
 const path = require('path');
 const http = require('http');
 
@@ -12,6 +12,7 @@ const fetch = require('node-fetch');
 
 // Create an app variable using express
 const app = express();
+
 /*
 // Enable CORS
 const cors = require('cors');
@@ -23,7 +24,7 @@ let corsOptions = {
 
 app.use(cors(corsOptions));
 */
-app.use(express.static(path.join(__dirname, 'dist/frequency-computation')));
+
 
 // Sort word-frequency array
 function sortArray(frequencyArray) {
@@ -145,6 +146,8 @@ function readTextFile(link) {
 }
 
 
+app.use(express.static(path.join(__dirname, 'dist/frequency-computation')));
+
 // Receive request, process data and send words as per userInput
 app.get('/api/words/:userInput', (request, response) => {
   readTextFile('http://terriblytinytales.com/test.txt')
@@ -153,15 +156,14 @@ app.get('/api/words/:userInput', (request, response) => {
     });
 });
 
-
 app.get('*', (request, response) => {
   response.sendFile(path.join(__dirname + '/dist/frequency-computation/index.html'));
 });
 
 const server = http.createServer(app);
 
-server.listen(8000, () => {
-  console.log('App listening on port 8000!');
+server.listen(process.env.PORT || 8000, () => {
+  console.log('App listening!');
 });
 
 /* app.listen(8000, () => {
