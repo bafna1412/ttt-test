@@ -10,7 +10,7 @@ import { Word } from './word';
 })
 export class WordsService {
 
-  private url = 'http://localhost:8000/api/words';
+  private url = '/api/words';
 
   message: string;
 
@@ -28,7 +28,7 @@ export class WordsService {
 
   constructor(private http: HttpClient) { }
 
-  getWords (userInput: number): Observable<Word[]> {
+  getWords (userInput: number): Observable<Word[]> {    
     return this.http.get<Word[]>(`${this.url}/${userInput}`)
      .pipe(
        catchError((error: any): Observable<Word[]> => {
