@@ -3,12 +3,16 @@
 // Require express
 const express = require('express');
 
+//Require path
+const path = require('path');
+const http = require('http');
+
 // Require fetch
 const fetch = require('node-fetch');
 
 // Create an app variable using express
 const app = express();
-
+/*
 // Enable CORS
 const cors = require('cors');
 // Set corsOptions
@@ -18,8 +22,8 @@ let corsOptions = {
 }
 
 app.use(cors(corsOptions));
-
-
+*/
+app.use(express.static(path.join(__dirname, 'dist/frequency-computation')));
 
 // Sort word-frequency array
 function sortArray(frequencyArray) {
@@ -149,6 +153,17 @@ app.get('/api/words/:userInput', (request, response) => {
     });
 });
 
-app.listen(8000, () => {
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname + '/dist/frequency-computation/index.html'));
+});
+
+const server = http.createServer(app);
+
+server.listen(8000, () => {
   console.log('App listening on port 8000!');
 });
+
+/* app.listen(8000, () => {
+  console.log('App listening on port 8000!');
+}); */
